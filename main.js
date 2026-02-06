@@ -33,12 +33,14 @@ window.speakCurrentQ = () => {
 onAuthStateChanged(auth, (user) => {
     if (user) {
         currentUid = user.uid;
+        document.getElementById('userEmail').innerText = user.email;
         document.getElementById('scrLogin').classList.remove('active');
         document.getElementById('mainContainer').style.opacity = '1';
         loadData(user.uid);
         nav('scrHome');
     } else {
         currentUid = null;
+        document.getElementById('userEmail').innerText = '';
         document.getElementById('scrLogin').classList.add('active');
         document.getElementById('mainContainer').style.opacity = '0';
     }
