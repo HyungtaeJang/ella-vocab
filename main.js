@@ -31,16 +31,19 @@ window.speakCurrentQ = () => {
 };
 
 onAuthStateChanged(auth, (user) => {
+    const userEmailSpan = document.getElementById('userEmail');
     if (user) {
         currentUid = user.uid;
-        document.getElementById('userEmail').innerText = user.email;
+        userEmailSpan.innerText = user.email;
+        userEmailSpan.title = user.email;
         document.getElementById('scrLogin').classList.remove('active');
         document.getElementById('mainContainer').style.opacity = '1';
         loadData(user.uid);
         nav('scrHome');
     } else {
         currentUid = null;
-        document.getElementById('userEmail').innerText = '';
+        userEmailSpan.innerText = '';
+        userEmailSpan.title = '';
         document.getElementById('scrLogin').classList.add('active');
         document.getElementById('mainContainer').style.opacity = '0';
     }
