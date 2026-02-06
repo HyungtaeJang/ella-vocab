@@ -14,8 +14,9 @@
   ];
 
   # Sets environment variables in the workspace
-  env = {};
-  idx = {
+env = {
+    GEMINI_API_KEY = "AIzaSyDy9JPx4TTDZp2T4Nv9b4xGa4O0L47uETw";
+  };  idx = {
     # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
     extensions = [
       # "vscodevim.vim"
