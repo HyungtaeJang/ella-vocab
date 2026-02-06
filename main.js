@@ -247,7 +247,7 @@ function loadQ() {
     setTimeout(() => document.getElementById('qInput').focus(), 150);
 }
 
-function saveToWrongNote(wordObj) {
+async function saveToWrongNote(wordObj) {
     if (!currentUid) return;
     
     let noteBook = vocabData.find(b => b.title === '오답노트 ⭐️');
@@ -262,7 +262,7 @@ function saveToWrongNote(wordObj) {
     } else {
         const newRef = push(ref(db, `users/${currentUid}/vocabData`));
         noteBookId = newRef.key;
-        set(newRef, { id: noteBookId, title: '오답노트 ⭐️', words: {} });
+        await set(newRef, { id: noteBookId, title: '오답노트 ⭐️', words: {} });
     }
 
     push(ref(db, `users/${currentUid}/vocabData/${noteBookId}/words`), {
