@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getDatabase, ref, set, onValue, push, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 import { firebaseConfig } from './firebase-config.js';
 
 const app = initializeApp(firebaseConfig);
@@ -71,6 +71,57 @@ document.getElementById('btnLogin').onclick = async () => {
         await signInWithEmailAndPassword(auth, email, pw);
     } catch (e) {
         document.getElementById('loginError').innerText = "로그인 정보가 틀렸습니다.";
+    }
+};
+
+// 로그인/회원가입 폼 전환 및 회원가입 로직
+const loginForm = document.getElementById('loginForm');
+const registerForm = document.getElementById('registerForm');
+const loginError = document.getElementById('loginError');
+const registerError = document.getElementById('registerError');
+
+const showLoginForm = () => {
+    loginForm.classList.remove('hidden');
+    registerForm.classList.add('hidden');
+    loginError.innerText = ''; // Clear previous errors
+    registerError.innerText = ''; // Clear previous errors
+};
+
+const showRegisterForm = () => {
+    loginForm.classList.add('hidden');
+    registerForm.classList.remove('hidden');
+    loginError.innerText = ''; // Clear previous errors
+    registerError.innerText = ''; // Clear previous errors
+};
+
+document.getElementById('showRegisterForm').onclick = showRegisterForm;
+document.getElementById('showLoginForm').onclick = showLoginForm;
+
+document.getElementById('btnRegister').onclick = async () => {
+    const email = document.getElementById('registerEmail').value;
+    const pw = document.getElementById('registerPw').value;
+    const pwConfirm = document.getElementById('registerPwConfirm').value;
+
+    registerError.innerText = ''; // Clear previous errors
+
+    if (pw !== pwConfirm) {
+        registerError.innerText = "비밀번호가 일치하지 않습니다.";
+        return;
+    }
+
+    try {
+        await createUserWithEmailAndPassword(auth, email, pw);
+        // 회원가입 성공 시 onAuthStateChanged가 처리하므로 추가적인 UI 처리는 필요 없음
+    } catch (e) {
+        let errorMessage = "회원가입 중 오류가 발생했습니다.";
+        if (e.code === 'auth/email-already-in-use') {
+            errorMessage = "이미 사용 중인 이메일입니다.";
+        } else if (e.code === 'auth/invalid-email') {
+            errorMessage = "유효하지 않은 이메일 형식입니다.";
+        } else if (e.code === 'auth/weak-password') {
+            errorMessage = "비밀번호는 6자 이상이어야 합니다.";
+        }
+        registerError.innerText = errorMessage;
     }
 };
 

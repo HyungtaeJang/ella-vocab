@@ -17,8 +17,22 @@
             <input id="loginEmail" type="email" placeholder="이메일" class="w-full p-4 rounded-2xl bg-white border border-slate-200 shadow-sm focus:ring-2 focus:ring-indigo-500">
             <input id="loginPw" type="password" placeholder="비밀번호" class="w-full p-4 rounded-2xl bg-white border border-slate-200 shadow-sm focus:ring-2 focus:ring-indigo-500">
         </div>
-        <button id="btnLogin" class="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold shadow-xl shadow-indigo-100 mb-4">로그인</button>
-        <p id="loginError" class="text-red-400 text-xs font-bold"></p>
+        <div id="loginForm">
+            <button id="btnLogin" class="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold shadow-xl shadow-indigo-100 mb-4">로그인</button>
+            <p id="loginError" class="text-red-400 text-xs font-bold"></p>
+            <p class="text-slate-400 text-sm mt-4">계정이 없으신가요? <button id="showRegisterForm" class="text-indigo-600 font-bold">회원가입</button></p>
+        </div>
+
+        <div id="registerForm" class="hidden">
+            <div class="space-y-3 mb-8">
+                <input id="registerEmail" type="email" placeholder="이메일" class="w-full p-4 rounded-2xl bg-white border border-slate-200 shadow-sm focus:ring-2 focus:ring-indigo-500">
+                <input id="registerPw" type="password" placeholder="비밀번호 (6자 이상)" class="w-full p-4 rounded-2xl bg-white border border-slate-200 shadow-sm focus:ring-2 focus:ring-indigo-500">
+                <input id="registerPwConfirm" type="password" placeholder="비밀번호 확인" class="w-full p-4 rounded-2xl bg-white border border-slate-200 shadow-sm focus:ring-2 focus:ring-indigo-500">
+            </div>
+            <button id="btnRegister" class="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold shadow-xl shadow-indigo-100 mb-4">회원가입</button>
+            <p id="registerError" class="text-red-400 text-xs font-bold"></p>
+            <p class="text-slate-400 text-sm mt-4">이미 계정이 있으신가요? <button id="showLoginForm" class="text-indigo-600 font-bold">로그인</button></p>
+        </div>
     </div>
 </div>
 
