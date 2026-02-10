@@ -136,7 +136,11 @@ window.nav = (id) => {
     document.getElementById('navHomeIcon').className = isQuizSetup ? "w-12 h-8 rounded-2xl flex items-center justify-center" : "w-12 h-8 rounded-2xl flex items-center justify-center bg-indigo-50 text-indigo-600";
     document.getElementById('navQuizIcon').className = isQuizSetup ? "w-12 h-8 rounded-2xl flex items-center justify-center bg-indigo-50 text-indigo-600" : "w-12 h-8 rounded-2xl flex items-center justify-center";
     if(id === 'scrQuizSetup') renderSetup();
-    window.scrollTo(0,0);
+    // Scroll the active screen to top
+    const screenEl = document.getElementById(id);
+    if (screenEl) {
+        screenEl.scrollTop = 0;
+    }
 };
 
 function updateTotalBadge() {
