@@ -38,3 +38,9 @@ input, textarea {
 
 #scrPlay.active { display: flex !important; flex-direction: column; align-items: center; justify-content: center; position: fixed; inset: 0; z-index: 100; background: #ffffff; }
 #scrLogin.active { display: flex !important; flex-direction: column; align-items: center; justify-content: center; position: fixed; inset: 0; z-index: 200; background: #f8fafc; }
+
+/* 하단 네비게이션 안전영역 처리 및 고정 보강 */
+#bottomNav {
+    bottom: env(safe-area-inset-bottom, 0);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+}

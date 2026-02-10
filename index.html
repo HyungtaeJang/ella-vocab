@@ -155,17 +155,19 @@
         <button onclick="checkAns()" class="fixed bottom-12 left-8 right-8 bg-indigo-600 text-white py-5 rounded-[2rem] font-bold text-xl shadow-2xl">확인</button>
     </div>
 
-    <nav id="bottomNav" class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white/90 backdrop-blur-xl border-t border-slate-50 flex justify-around items-center h-24 z-40">
-        <button onclick="nav('scrHome')" id="navHome" class="flex flex-col items-center gap-1 flex-1">
-            <div id="navHomeIcon" class="w-12 h-8 rounded-2xl flex items-center justify-center transition-colors text-xl">🏠</div>
-            <span class="text-[10px] font-bold text-slate-400">HOME</span>
-        </button>
-        <button onclick="nav('scrQuizSetup')" id="navQuiz" class="flex flex-col items-center gap-1 flex-1">
-            <div id="navQuizIcon" class="w-12 h-8 rounded-2xl flex items-center justify-center transition-colors text-xl">📝</div>
-            <span class="text-[10px] font-bold text-slate-400">QUIZ</span>
-        </button>
-    </nav>
 </div>
+
+<!-- 하단 네비게이션: 뷰포트에 고정하기 위해 메인 컨테이너 밖으로 이동 -->
+<nav id="bottomNav" class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white/90 backdrop-blur-xl border-t border-slate-50 flex justify-around items-center h-24 z-40">
+    <button onclick="nav('scrHome')" id="navHome" class="flex flex-col items-center gap-1 flex-1">
+        <div id="navHomeIcon" class="w-12 h-8 rounded-2xl flex items-center justify-center transition-colors text-xl">🏠</div>
+        <span class="text-[10px] font-bold text-slate-400">HOME</span>
+    </button>
+    <button onclick="nav('scrQuizSetup')" id="navQuiz" class="flex flex-col items-center gap-1 flex-1">
+        <div id="navQuizIcon" class="w-12 h-8 rounded-2xl flex items-center justify-center transition-colors text-xl">📝</div>
+        <span class="text-[10px] font-bold text-slate-400">QUIZ</span>
+    </button>
+</nav>
 
 <script type="module" src="main.js"></script>
 </body>
