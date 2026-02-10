@@ -13,11 +13,12 @@
     <div class="w-full max-w-xs text-center">
         <h1 class="text-4xl font-black text-indigo-600 mb-2 tracking-tighter">Ella Vocab</h1>
         <p class="text-slate-400 text-sm mb-12 font-bold italic">Only for Ella & Family</p>
-        <div class="space-y-3 mb-8">
-            <input id="loginEmail" type="email" placeholder="이메일" class="w-full p-4 rounded-2xl bg-white border border-slate-200 shadow-sm focus:ring-2 focus:ring-indigo-500">
-            <input id="loginPw" type="password" placeholder="비밀번호" class="w-full p-4 rounded-2xl bg-white border border-slate-200 shadow-sm focus:ring-2 focus:ring-indigo-500">
-        </div>
+        
         <div id="loginForm">
+            <div class="space-y-3 mb-8">
+                <input id="loginEmail" type="email" placeholder="이메일" class="w-full p-4 rounded-2xl bg-white border border-slate-200 shadow-sm focus:ring-2 focus:ring-indigo-500">
+                <input id="loginPw" type="password" placeholder="비밀번호" class="w-full p-4 rounded-2xl bg-white border border-slate-200 shadow-sm focus:ring-2 focus:ring-indigo-500">
+            </div>
             <button id="btnLogin" class="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold shadow-xl shadow-indigo-100 mb-4">로그인</button>
             <p id="loginError" class="text-red-400 text-xs font-bold"></p>
             <p class="text-slate-400 text-sm mt-4">계정이 없으신가요? <button id="showRegisterForm" class="text-indigo-600 font-bold">회원가입</button></p>
@@ -47,84 +48,94 @@
         </div>
     </header>
 
-    <main id="scrHome" class="screen active p-6 flex-1 pb-32">
-        <div class="flex justify-between items-center mb-8">
-            <h2 class="text-xl font-bold text-slate-800">나의 단어장</h2>
-            <button onclick="nav('scrCreate')" class="bg-indigo-600 text-white px-5 py-2.5 rounded-2xl text-sm font-bold shadow-lg">+ 생성</button>
-        </div>
-        <div id="bookList" class="space-y-4"></div>
-        <div class="text-center mt-12">
-            <span id="userEmail" class="text-xs font-semibold text-slate-500" title=""></span>
+    <main id="scrHome" class="screen active flex-1 overflow-y-auto">
+        <div class="p-6 pt-24 pb-32">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-xl font-bold text-slate-800">나의 단어장</h2>
+                <button onclick="nav('scrCreate')" class="bg-indigo-600 text-white px-5 py-2.5 rounded-2xl text-sm font-bold shadow-lg">+ 생성</button>
+            </div>
+            <div id="bookList" class="space-y-4"></div>
+            <div class="text-center mt-12">
+                <span id="userEmail" class="text-xs font-semibold text-slate-500" title=""></span>
+            </div>
         </div>
     </main>
 
-    <section id="scrCreate" class="screen p-8 text-center flex-1">
-        <h2 class="text-2xl font-bold text-slate-900 mb-10 text-left leading-tight">새로운 단어장<br>이름을 정해주세요.</h2>
-        <input id="newBookTitle" type="text" class="w-full bg-slate-50 border-0 p-5 rounded-2xl text-xl mb-12 text-center" placeholder="예: 6학년 필수">
-        <div class="flex gap-4">
-            <button onclick="nav('scrHome')" class="flex-1 bg-slate-100 py-4 rounded-2xl font-bold text-slate-500">취소</button>
-            <button onclick="createBook()" class="flex-1 bg-indigo-600 text-white py-4 rounded-2xl font-bold">만들기</button>
+    <section id="scrCreate" class="screen flex-1 overflow-y-auto">
+        <div class="p-8 text-center pt-24 pb-24">
+            <h2 class="text-2xl font-bold text-slate-900 mb-10 text-left leading-tight">새로운 단어장<br>이름을 정해주세요.</h2>
+            <input id="newBookTitle" type="text" class="w-full bg-slate-50 border-0 p-5 rounded-2xl text-xl mb-12 text-center" placeholder="예: 6학년 필수">
+            <div class="flex gap-4">
+                <button onclick="nav('scrHome')" class="flex-1 bg-slate-100 py-4 rounded-2xl font-bold text-slate-500">취소</button>
+                <button onclick="createBook()" class="flex-1 bg-indigo-600 text-white py-4 rounded-2xl font-bold">만들기</button>
+            </div>
         </div>
     </section>
 
-    <section id="scrDetail" class="screen p-6 flex-1 pb-32">
-        <div class="flex items-center justify-between mb-8">
-            <div class="flex items-center gap-3">
-                <button onclick="nav('scrHome')" class="bg-slate-50 p-2 rounded-xl text-slate-400 flex-shrink-0">◀</button>
-                <h2 id="detailTitle" class="text-xl font-bold text-slate-800 truncate">단어장</h2>
+    <section id="scrDetail" class="screen flex-1 overflow-y-auto">
+        <div class="p-6 pt-24 pb-32">
+            <div class="flex items-center justify-between mb-8">
+                <div class="flex items-center gap-3">
+                    <button onclick="nav('scrHome')" class="bg-slate-50 p-2 rounded-xl text-slate-400 flex-shrink-0">◀</button>
+                    <h2 id="detailTitle" class="text-xl font-bold text-slate-800 truncate">단어장</h2>
+                </div>
+                <button id="btnEditTitle" onclick="editBookTitle()" class="p-2 text-slate-400 hover:text-indigo-500 hover:bg-indigo-50 rounded-xl transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+                    </svg>
+                </button>
             </div>
-            <button id="btnEditTitle" onclick="editBookTitle()" class="p-2 text-slate-400 hover:text-indigo-500 hover:bg-indigo-50 rounded-xl transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
-                </svg>
-            </button>
-        </div>
-        
-        <div id="inputSection" class="bg-slate-900 p-6 rounded-[2.5rem] mb-8 shadow-xl">
-            <div class="flex bg-white/10 rounded-2xl p-1 mb-6">
-                <button onclick="toggleInputMode('single')" id="btnTabSingle" class="flex-1 py-2.5 rounded-xl bg-white text-indigo-600 text-xs font-bold shadow-sm">한 건씩</button>
-                <button onclick="toggleInputMode('bulk')" id="btnTabBulk" class="flex-1 py-2.5 rounded-xl text-white/40 text-xs font-bold">일괄 입력</button>
+            
+            <div id="inputSection" class="bg-slate-900 p-6 rounded-[2.5rem] mb-8 shadow-xl">
+                <div class="flex bg-white/10 rounded-2xl p-1 mb-6">
+                    <button onclick="toggleInputMode('single')" id="btnTabSingle" class="flex-1 py-2.5 rounded-xl bg-white text-indigo-600 text-xs font-bold shadow-sm">한 건씩</button>
+                    <button onclick="toggleInputMode('bulk')" id="btnTabBulk" class="flex-1 py-2.5 rounded-xl text-white/40 text-xs font-bold">일괄 입력</button>
+                </div>
+                <div id="modeSingle" class="space-y-3">
+                    <input id="inEng" type="text" placeholder="영단어 입력" class="w-full bg-white/10 border-0 p-4 rounded-xl text-white outline-none">
+                    <input id="inKor" type="text" placeholder="한글 뜻 입력" class="w-full bg-white/10 border-0 p-4 rounded-xl text-white outline-none">
+                    <button onclick="addWord()" class="w-full bg-indigo-500 text-white py-4 rounded-xl font-bold active:bg-indigo-400 transition-colors">저장</button>
+                </div>
+                <div id="modeBulk" class="hidden space-y-3">
+                    <textarea id="bulkInput" class="w-full h-32 bg-white/10 border-0 p-4 rounded-xl text-white text-sm outline-none" placeholder="apple:사과&#10;banana:바나나"></textarea>
+                    <button onclick="addBulkWords()" class="w-full bg-indigo-500 text-white py-4 rounded-xl font-bold">일괄 추가</button>
+                </div>
             </div>
-            <div id="modeSingle" class="space-y-3">
-                <input id="inEng" type="text" placeholder="영단어 입력" class="w-full bg-white/10 border-0 p-4 rounded-xl text-white outline-none">
-                <input id="inKor" type="text" placeholder="한글 뜻 입력" class="w-full bg-white/10 border-0 p-4 rounded-xl text-white outline-none">
-                <button onclick="addWord()" class="w-full bg-indigo-500 text-white py-4 rounded-xl font-bold active:bg-indigo-400 transition-colors">저장</button>
-            </div>
-            <div id="modeBulk" class="hidden space-y-3">
-                <textarea id="bulkInput" class="w-full h-32 bg-white/10 border-0 p-4 rounded-xl text-white text-sm outline-none" placeholder="apple:사과&#10;banana:바나나"></textarea>
-                <button onclick="addBulkWords()" class="w-full bg-indigo-500 text-white py-4 rounded-xl font-bold">일괄 추가</button>
-            </div>
-        </div>
 
-        <div id="wordTable" class="space-y-3"></div>
+            <div id="wordTable" class="space-y-3"></div>
+        </div>
     </section>
 
-    <section id="scrQuizSetup" class="screen p-6 flex-1 pb-32">
-        <h2 class="text-2xl font-bold mb-8 text-slate-900">퀴즈 설정</h2>
-        <div class="space-y-8">
-            <div id="quizRangeList" class="space-y-3 max-h-64 overflow-y-auto"></div>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="bg-slate-50 p-4 rounded-2xl text-center">
-                    <label class="text-[10px] font-bold text-slate-400 mb-1 block">문항 수</label>
-                    <select id="quizCount" class="bg-transparent font-bold outline-none text-center w-full">
-                        <option value="10">10</option>
-                        <option value="20">20</option>
-                        <option value="30">30</option>
-                        <option value="40">40</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                        <option value="0">전체</option>
-                    </select>
-                </div>
-                <div class="bg-slate-50 p-4 rounded-2xl text-center">
-                    <label class="text-[10px] font-bold text-slate-400 mb-1 block">유형</label>
-                    <select id="quizType" class="bg-transparent font-bold outline-none text-center w-full">
-                        <option value="EtoK">영 ➜ 한</option>
-                        <option value="KtoE">한 ➜ 영</option>
-                    </select>
-                </div>
+    <section id="scrQuizSetup" class="screen flex flex-col flex-1 overflow-y-auto">
+        <div class="pt-24 pb-24">
+            <div class="p-6 pb-0 flex-shrink-0">
+                <h2 class="text-2xl font-bold text-slate-900">퀴즈 설정</h2>
             </div>
-            <button onclick="startQuiz()" class="w-full bg-indigo-600 text-white py-5 rounded-[2rem] font-bold text-lg shadow-xl shadow-indigo-100 active:scale-95 transition">시작하기 🚀</button>
+            <div id="quizRangeList" class="flex-1 space-y-3 overflow-y-auto p-6"></div>
+            <div class="flex-shrink-0 p-6 pt-3 bg-white border-t border-slate-100 space-y-3 shadow-[0_-10px_30px_-15px_rgba(0,0,0,0.1)]">
+                 <div class="grid grid-cols-2 gap-3">
+                    <div class="bg-slate-50 p-2 rounded-xl text-center">
+                        <label class="text-[10px] font-bold text-slate-400 mb-0.5 block">문항 수</label>
+                        <select id="quizCount" class="bg-transparent font-bold outline-none text-center w-full" style="text-align-last: center;">
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="40">40</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                            <option value="0">전체</option>
+                        </select>
+                    </div>
+                    <div class="bg-slate-50 p-2 rounded-xl text-center">
+                        <label class="text-[10px] font-bold text-slate-400 mb-0.5 block">유형</label>
+                        <select id="quizType" class="bg-transparent font-bold outline-none text-center w-full" style="text-align-last: center;">
+                            <option value="EtoK">영 ➜ 한</option>
+                            <option value="KtoE">한 ➜ 영</option>
+                        </select>
+                    </div>
+                </div>
+                <button onclick="startQuiz()" class="w-full bg-indigo-600 text-white py-3 rounded-2xl font-bold text-lg shadow-xl shadow-indigo-100 active:scale-95 transition">시작하기 🚀</button>
+            </div>
         </div>
     </section>
 
